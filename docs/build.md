@@ -66,3 +66,10 @@ All tuned values are mirrored in `docs/story.md` + `docs/scope.md` + `data.js` (
 
 - **Round 1 (2026-09-20, user):** เปิดจากลิงก์ Pages ได้ (ครั้งแรกเจอ 404 จากแคชช่วง provisioning ~30 วิ — แก้ด้วย cache-busted URL) · ผู้เล่นยืนยันเข้าเล่นได้และอนุมัติปิด origin issue (#3 express-math) · run เต็ม/kid-W1/daily ทยอยเล่นจริงต่อ — พบปัญหาตรงไหนแจ้งผ่าน feedback intake ได้เลย
 - Origin issue #3 closed: https://github.com/pheerawit-wasinphongwanit/express-math/issues/3#issuecomment-5748241012
+
+## Feedback intake (2026-09-20)
+
+- โครงสร้างพร้อมตั้งแต่ scaffold commit: `feedback.yml` template + `feedback-intake` workflow (label+ack+telegram-notify, mirror express-math)
+- จุดที่ต้องเติมตอน E2E: **label `feedback` ไม่ได้ถูกสร้างอัตโนมัติบน repo ใหม่** → สร้างด้วย API (สี 0ea5e9 เหมือน express-math) ก่อนยิง test
+- E2E: issue #1 → workflow รัน 8s success → label ✓ + ack comment ✓ → ปิดพร้อมสรุป
+- **ค้าง 1 ขั้น (manual):** เพิ่ม secrets `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID` ที่ Settings → Secrets and variables → Actions (ค่าเดียวกับ express-math) เพื่อเปิดแจ้งเตือน Telegram — workflow ข้าม notify ได้กระทบกระเทือนน้อยจนกว่าจะเพิ่ม
