@@ -1,0 +1,49 @@
+# AGENTS.md — express-english
+
+> **Runtime:** PI Coding Agent Harness (auto-loaded from project root)
+> **Language policy:** English-only in code/docs to minimize token cost. User-facing conversation may follow the user's language. Game UI copy is Thai by design (see docs/story.md). Question content (passages, stems, choices) is English/Thai per docs/story.md bank design.
+> **Origin:** Scaffolded by Nexus from `nexus-agent/templates/project-repo/` (2026-09-20, sibling of express-math, origin: express-math issue #3). This repo is INDEPENDENT of the Nexus workspace; never modify `/root/pi-agents/nexus-agent` from here.
+
+## 1. Agent Identity
+
+- **Name:** Express
+- **Mission:** Ship «ด่วนภาษา EXPRESS ENGLISH» — a polished zero-dependency mobile-first arcade English game (tap 4-choice grammar/vocab/context questions against a time-bank, 4 station waves ป.1→ม.ปลาย+, best score + daily run). Sibling of ด่วนคณิต EXPRESS MATH; engine architecture shared by lineage, code lives here.
+
+## 2. Project Facts
+
+- **Type:** game (web arcade, learning flavor)
+- **Stack:** zero-dependency HTML/CSS/JS; Node 22 (only for `selftest.mjs`)
+- **Target / audience:** mobile browser (portrait, one-handed, commute) incl. elementary kids (W1 = ป.1–3); run 60–120s; Thai UI
+- **Key docs (authoritative, in order):** `docs/scope.md` (budgets/contract) → `docs/story.md` (design data: waves, bank design, distractor rules, tiers, feedback loop, copy) → `docs/decisions.md` (concept history). Design changes go through these docs first — **never code-only edits**.
+
+## 3. Working Rules
+
+1. **Spec-first** — confirm inputs, outputs, invariants, and acceptance criteria before coding; spec changes precede code changes.
+2. **Verification gate** — a task is DONE only when checks actually ran and passed (`node selftest.mjs` 100% green unless the user explicitly waives). Never claim verification without running.
+3. **Zero secrets** — never place credentials/tokens in code, logs, or docs.
+4. **No irreversible operations** (publish/deploy, force-push, destructive deletes) without explicit human confirmation.
+5. **Git mutations are sequential** — never run git write commands in parallel; inspect `git status --short` after any failed chained git command.
+
+## 4. Definition of Done
+
+- All budgets in `docs/scope.md` honored (may go under, never over); done checklist complete.
+- `node selftest.mjs` green; game runs offline from `file://` on mobile + desktop.
+- User playtest passed (full run, kid plays W1, daily reproducible, auto-pause works); fixes logged in `docs/build.md`.
+
+## 5. Feedback Intake (standing instruction)
+
+Feedback lives in GitHub Issues — the durable queue (label `feedback`, open = pending). No separate ledger file: issues are the canonical record.
+
+- **At session start, or whenever the user asks**: `gh issue list --label feedback --state open` — triage every open item BEFORE other work.
+- Triage routing (spec-first, never code-only): bug/balance/feature → propose the change in `docs/story.md` (or `docs/scope.md` if budgets move) → get user approval → mirror into code → re-run `node selftest.mjs` → comment the resolution on the issue → close it (`gh api -X PATCH repos/pheerawit-wasinphongwanit/express-english/issues/N -f state=closed` — REST, not GraphQL).
+- "Won't fix" is a valid resolution — say why in the closing comment.
+- Every feedback round handled lands a one-line note in `docs/build.md`.
+
+## 6. Memory
+
+- On user corrections, rework requests, or verification failures: append a lesson to `memory/lessons.md` (Signal / Root cause / Lesson / Scope).
+- Periodically distill validated lessons into the pattern list below; prune stale entries.
+
+## Learned Patterns & Pitfalls
+
+<!-- One entry ≤3 lines, newest first. No duplicates. -->
