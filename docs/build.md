@@ -64,5 +64,5 @@ All tuned values are mirrored in `docs/story.md` + `docs/scope.md` + `data.js` (
 
 ## Playtest notes & fixes
 
-- [ ] Pending round 1 (user + kid): full run on mobile, kid plays W1 (ป.1–3), daily
-      reproducibility, auto-pause on tab switch — fixes land here.
+- **Round 1 (2026-09-20, user):** เปิดจากลิงก์ Pages ได้ (ครั้งแรกเจอ 404 จากแคชช่วง provisioning ~30 วิ — แก้ด้วย cache-busted URL) · ผู้เล่นยืนยันเข้าเล่นได้และอนุมัติปิด origin issue (#3 express-math) · run เต็ม/kid-W1/daily ทยอยเล่นจริงต่อ — พบปัญหาตรงไหนแจ้งผ่าน feedback intake ได้เลย
+- Origin issue #3 closed: https://github.com/pheerawit-wasinphongwanit/express-math/issues/3#issuecomment-5748241012
