@@ -1,0 +1,148 @@
+// bank-grammar.js — PURE DATA: grammar bank (120 items) transcribed from docs/story.md.
+// Item = { id, family:'grammar', tier:1..4, form:'spot'|'fill', prompt, choices[4], correctIndex }
+// Convention: correct answer FIRST (correctIndex 0) — the sampler shuffles position at serve time.
+// spot: prompt = sentence with exactly ONE error; choices = [wrong word, 3 correct content words
+//       that appear in the sentence] (near-miss rule, docs/story.md).
+// fill: prompt has ___; distractors = same word-family forms / real confusion pairs. No junk forms.
+(function (global) {
+'use strict';
+
+const ITEMS = [
+/* ---------- tier 1 · ป.1–3 · spot · is/are, a/an, plural, he/she, this/these ---------- */
+{ id: 'g101', family: 'grammar', tier: 1, form: 'spot', prompt: 'She are my big sister.', choices: ['are', 'big', 'sister', 'She'], correctIndex: 0 },
+{ id: 'g102', family: 'grammar', tier: 1, form: 'spot', prompt: 'They is very happy today.', choices: ['is', 'very', 'happy', 'They'], correctIndex: 0 },
+{ id: 'g103', family: 'grammar', tier: 1, form: 'spot', prompt: 'You am my best friend.', choices: ['am', 'best', 'friend', 'You'], correctIndex: 0 },
+{ id: 'g104', family: 'grammar', tier: 1, form: 'spot', prompt: 'The cats is under the table.', choices: ['is', 'under', 'table', 'cats'], correctIndex: 0 },
+{ id: 'g105', family: 'grammar', tier: 1, form: 'spot', prompt: 'My teacher are kind to us.', choices: ['are', 'kind', 'teacher', 'My'], correctIndex: 0 },
+{ id: 'g106', family: 'grammar', tier: 1, form: 'spot', prompt: 'I want an ball for my birthday.', choices: ['an', 'ball', 'want', 'birthday'], correctIndex: 0 },
+{ id: 'g107', family: 'grammar', tier: 1, form: 'spot', prompt: 'She has a apple in her bag.', choices: ['a', 'apple', 'bag', 'has'], correctIndex: 0 },
+{ id: 'g108', family: 'grammar', tier: 1, form: 'spot', prompt: 'He eats a egg every morning.', choices: ['a', 'egg', 'eats', 'morning'], correctIndex: 0 },
+{ id: 'g109', family: 'grammar', tier: 1, form: 'spot', prompt: 'We saw a elephant at the zoo.', choices: ['a', 'elephant', 'zoo', 'saw'], correctIndex: 0 },
+{ id: 'g110', family: 'grammar', tier: 1, form: 'spot', prompt: 'My uncle is an police officer.', choices: ['an', 'police', 'officer', 'uncle'], correctIndex: 0 },
+{ id: 'g111', family: 'grammar', tier: 1, form: 'spot', prompt: 'I have three book in my bag.', choices: ['book', 'three', 'bag', 'have'], correctIndex: 0 },
+{ id: 'g112', family: 'grammar', tier: 1, form: 'spot', prompt: 'She sees two bird in the tree.', choices: ['bird', 'two', 'tree', 'sees'], correctIndex: 0 },
+{ id: 'g113', family: 'grammar', tier: 1, form: 'spot', prompt: 'There are five cat on the wall.', choices: ['cat', 'five', 'wall', 'are'], correctIndex: 0 },
+{ id: 'g114', family: 'grammar', tier: 1, form: 'spot', prompt: 'He buys four orange for us.', choices: ['orange', 'four', 'buys', 'us'], correctIndex: 0 },
+{ id: 'g115', family: 'grammar', tier: 1, form: 'spot', prompt: 'I like those two shoe.', choices: ['shoe', 'two', 'those', 'like'], correctIndex: 0 },
+{ id: 'g116', family: 'grammar', tier: 1, form: 'spot', prompt: 'I see she at school every day.', choices: ['she', 'see', 'school', 'day'], correctIndex: 0 },
+{ id: 'g117', family: 'grammar', tier: 1, form: 'spot', prompt: 'Can you help he with the bag?', choices: ['he', 'help', 'bag', 'Can'], correctIndex: 0 },
+{ id: 'g118', family: 'grammar', tier: 1, form: 'spot', prompt: 'We play with they after class.', choices: ['they', 'play', 'class', 'after'], correctIndex: 0 },
+{ id: 'g119', family: 'grammar', tier: 1, form: 'spot', prompt: 'Look at he! Tom swims fast.', choices: ['he', 'Look', 'swims', 'fast'], correctIndex: 0 },
+{ id: 'g120', family: 'grammar', tier: 1, form: 'spot', prompt: 'That is he new pencil.', choices: ['he', 'new', 'pencil', 'That'], correctIndex: 0 },
+{ id: 'g121', family: 'grammar', tier: 1, form: 'spot', prompt: 'These is my new shoes.', choices: ['is', 'new', 'shoes', 'These'], correctIndex: 0 },
+{ id: 'g122', family: 'grammar', tier: 1, form: 'spot', prompt: 'This are your books.', choices: ['are', 'your', 'books', 'This'], correctIndex: 0 },
+{ id: 'g123', family: 'grammar', tier: 1, form: 'spot', prompt: 'Those is big buses.', choices: ['is', 'big', 'buses', 'Those'], correctIndex: 0 },
+{ id: 'g124', family: 'grammar', tier: 1, form: 'spot', prompt: 'This book are very fun.', choices: ['are', 'book', 'fun', 'very'], correctIndex: 0 },
+{ id: 'g125', family: 'grammar', tier: 1, form: 'spot', prompt: 'Is these your crayons?', choices: ['Is', 'crayons', 'your', 'these'], correctIndex: 0 },
+{ id: 'g126', family: 'grammar', tier: 1, form: 'spot', prompt: 'The children is happy outside.', choices: ['is', 'children', 'happy', 'outside'], correctIndex: 0 },
+{ id: 'g127', family: 'grammar', tier: 1, form: 'spot', prompt: 'My friends is coming now.', choices: ['is', 'friends', 'coming', 'now'], correctIndex: 0 },
+{ id: 'g128', family: 'grammar', tier: 1, form: 'spot', prompt: 'I am have two dogs.', choices: ['am', 'have', 'dogs', 'two'], correctIndex: 0 },
+{ id: 'g129', family: 'grammar', tier: 1, form: 'spot', prompt: 'This chairs are very new.', choices: ['This', 'chairs', 'very', 'new'], correctIndex: 0 },
+{ id: 'g130', family: 'grammar', tier: 1, form: 'spot', prompt: 'He reads a interesting book.', choices: ['a', 'interesting', 'reads', 'book'], correctIndex: 0 },
+
+/* ---------- tier 2 · ป.4–6 · spot · 3rd person -s, have/has, past simple, in/on/at ---------- */
+{ id: 'g201', family: 'grammar', tier: 2, form: 'spot', prompt: 'She go to school by bus.', choices: ['go', 'school', 'bus', 'She'], correctIndex: 0 },
+{ id: 'g202', family: 'grammar', tier: 2, form: 'spot', prompt: 'My father watch TV at night.', choices: ['watch', 'TV', 'night', 'father'], correctIndex: 0 },
+{ id: 'g203', family: 'grammar', tier: 2, form: 'spot', prompt: 'Tom play football after class.', choices: ['play', 'football', 'class', 'after'], correctIndex: 0 },
+{ id: 'g204', family: 'grammar', tier: 2, form: 'spot', prompt: 'The baby cry loudly every night.', choices: ['cry', 'baby', 'loudly', 'night'], correctIndex: 0 },
+{ id: 'g205', family: 'grammar', tier: 2, form: 'spot', prompt: "He don't like spicy food.", choices: ["don't", 'spicy', 'food', 'like'], correctIndex: 0 },
+{ id: 'g206', family: 'grammar', tier: 2, form: 'spot', prompt: 'My sister have long hair.', choices: ['have', 'long', 'hair', 'sister'], correctIndex: 0 },
+{ id: 'g207', family: 'grammar', tier: 2, form: 'spot', prompt: 'They has three dogs at home.', choices: ['has', 'three', 'dogs', 'home'], correctIndex: 0 },
+{ id: 'g208', family: 'grammar', tier: 2, form: 'spot', prompt: "I has breakfast at seven o'clock.", choices: ['has', 'breakfast', 'seven', "o'clock"], correctIndex: 0 },
+{ id: 'g209', family: 'grammar', tier: 2, form: 'spot', prompt: 'We go to Chiang Mai last week.', choices: ['go', 'Chiang', 'week', 'last'], correctIndex: 0 },
+{ id: 'g210', family: 'grammar', tier: 2, form: 'spot', prompt: 'She see a snake yesterday.', choices: ['see', 'snake', 'yesterday', 'She'], correctIndex: 0 },
+{ id: 'g211', family: 'grammar', tier: 2, form: 'spot', prompt: 'He eat two sandwiches this morning.', choices: ['eat', 'sandwiches', 'morning', 'two'], correctIndex: 0 },
+{ id: 'g212', family: 'grammar', tier: 2, form: 'spot', prompt: 'I meet him at the mall last Sunday.', choices: ['meet', 'mall', 'Sunday', 'last'], correctIndex: 0 },
+{ id: 'g213', family: 'grammar', tier: 2, form: 'spot', prompt: 'My cat catch a mouse last night.', choices: ['catch', 'mouse', 'night', 'last'], correctIndex: 0 },
+{ id: 'g214', family: 'grammar', tier: 2, form: 'spot', prompt: 'My phone is in the desk.', choices: ['in', 'phone', 'desk', 'My'], correctIndex: 0 },
+{ id: 'g215', family: 'grammar', tier: 2, form: 'spot', prompt: 'We have lunch on noon.', choices: ['on', 'lunch', 'noon', 'We'], correctIndex: 0 },
+{ id: 'g216', family: 'grammar', tier: 2, form: 'spot', prompt: 'She sleeps in Monday morning.', choices: ['in', 'sleeps', 'Monday', 'morning'], correctIndex: 0 },
+
+/* ---------- tier 2 · ป.4–6 · fill · same word-family forms / confusion pairs ---------- */
+{ id: 'g217', family: 'grammar', tier: 2, form: 'fill', prompt: 'My sister ___ to music every day.', choices: ['listens', 'listen', 'listening', 'listened'], correctIndex: 0 },
+{ id: 'g218', family: 'grammar', tier: 2, form: 'fill', prompt: 'He ___ his homework after dinner.', choices: ['does', 'do', 'doing', 'did'], correctIndex: 0 },
+{ id: 'g219', family: 'grammar', tier: 2, form: 'fill', prompt: "The shop ___ at nine o'clock.", choices: ['opens', 'open', 'opening', 'opened'], correctIndex: 0 },
+{ id: 'g220', family: 'grammar', tier: 2, form: 'fill', prompt: 'We ___ our grandmother last weekend.', choices: ['visited', 'visit', 'visits', 'visiting'], correctIndex: 0 },
+{ id: 'g221', family: 'grammar', tier: 2, form: 'fill', prompt: 'I ___ a good movie yesterday.', choices: ['watched', 'watch', 'watches', 'watching'], correctIndex: 0 },
+{ id: 'g222', family: 'grammar', tier: 2, form: 'fill', prompt: 'She ___ rice for breakfast this morning.', choices: ['ate', 'eat', 'eats', 'eating'], correctIndex: 0 },
+{ id: 'g223', family: 'grammar', tier: 2, form: 'fill', prompt: 'They ___ a big fish last Saturday.', choices: ['caught', 'catch', 'catches', 'catching'], correctIndex: 0 },
+{ id: 'g224', family: 'grammar', tier: 2, form: 'fill', prompt: 'My mother ___ coffee every morning.', choices: ['drinks', 'drink', 'drinking', 'drank'], correctIndex: 0 },
+{ id: 'g225', family: 'grammar', tier: 2, form: 'fill', prompt: 'Tom ___ up at six every day.', choices: ['gets', 'get', 'getting', 'got'], correctIndex: 0 },
+{ id: 'g226', family: 'grammar', tier: 2, form: 'fill', prompt: 'The students ___ English on Monday and Wednesday.', choices: ['study', 'studies', 'studying', 'studied'], correctIndex: 0 },
+{ id: 'g227', family: 'grammar', tier: 2, form: 'fill', prompt: 'We ___ TV every evening.', choices: ['watch', 'watches', 'watching', 'watched'], correctIndex: 0 },
+{ id: 'g228', family: 'grammar', tier: 2, form: 'fill', prompt: 'My father ___ a new car last month.', choices: ['bought', 'buy', 'buys', 'buying'], correctIndex: 0 },
+{ id: 'g229', family: 'grammar', tier: 2, form: 'fill', prompt: 'The dog ___ around the garden every day.', choices: ['runs', 'run', 'running', 'ran'], correctIndex: 0 },
+{ id: 'g230', family: 'grammar', tier: 2, form: 'fill', prompt: 'She ___ her teeth twice a day.', choices: ['brushes', 'brush', 'brushing', 'brushed'], correctIndex: 0 },
+
+/* ---------- tier 3 · ม.ต้น · spot · tense mix, comparatives, some/any, much/many ---------- */
+{ id: 'g301', family: 'grammar', tier: 3, form: 'spot', prompt: 'She has finished her homework two hours ago.', choices: ['has', 'finished', 'homework', 'hours'], correctIndex: 0 },
+{ id: 'g302', family: 'grammar', tier: 3, form: 'spot', prompt: 'Did you went to the party?', choices: ['went', 'party', 'Did', 'you'], correctIndex: 0 },
+{ id: 'g303', family: 'grammar', tier: 3, form: 'spot', prompt: 'She can sings very well.', choices: ['sings', 'well', 'She', 'very'], correctIndex: 0 },
+{ id: 'g304', family: 'grammar', tier: 3, form: 'spot', prompt: 'This book is gooder than that one.', choices: ['gooder', 'book', 'that', 'one'], correctIndex: 0 },
+{ id: 'g305', family: 'grammar', tier: 3, form: 'spot', prompt: 'How much students are in your class?', choices: ['much', 'students', 'class', 'your'], correctIndex: 0 },
+{ id: 'g306', family: 'grammar', tier: 3, form: 'spot', prompt: 'There are much people at the mall.', choices: ['much', 'people', 'mall', 'are'], correctIndex: 0 },
+{ id: 'g307', family: 'grammar', tier: 3, form: 'spot', prompt: 'How many sugar do you want?', choices: ['many', 'sugar', 'want', 'How'], correctIndex: 0 },
+{ id: 'g308', family: 'grammar', tier: 3, form: 'spot', prompt: 'He works at the hospital last year.', choices: ['works', 'hospital', 'year', 'last'], correctIndex: 0 },
+{ id: 'g309', family: 'grammar', tier: 3, form: 'spot', prompt: "We don't went to school last Friday.", choices: ['went', 'school', 'Friday', 'last'], correctIndex: 0 },
+{ id: 'g310', family: 'grammar', tier: 3, form: 'spot', prompt: 'She can to drive a car.', choices: ['to', 'drive', 'car', 'She'], correctIndex: 0 },
+{ id: 'g311', family: 'grammar', tier: 3, form: 'spot', prompt: 'My room is cleanest than yours.', choices: ['cleanest', 'room', 'yours', 'My'], correctIndex: 0 },
+{ id: 'g312', family: 'grammar', tier: 3, form: 'spot', prompt: 'This is the more interesting book in the shop.', choices: ['more', 'interesting', 'book', 'shop'], correctIndex: 0 },
+{ id: 'g313', family: 'grammar', tier: 3, form: 'spot', prompt: 'Do you have some brothers or sisters?', choices: ['some', 'brothers', 'sisters', 'have'], correctIndex: 0 },
+{ id: 'g314', family: 'grammar', tier: 3, form: 'spot', prompt: 'He plays guitar good.', choices: ['good', 'plays', 'guitar', 'He'], correctIndex: 0 },
+
+/* ---------- tier 3 · ม.ต้น · fill ---------- */
+{ id: 'g315', family: 'grammar', tier: 3, form: 'fill', prompt: "I have ___ my keys. I can't find them!", choices: ['lost', 'lose', 'loses', 'losing'], correctIndex: 0 },
+{ id: 'g316', family: 'grammar', tier: 3, form: 'fill', prompt: 'She has ___ in Bangkok for ten years.', choices: ['lived', 'lives', 'living', 'live'], correctIndex: 0 },
+{ id: 'g317', family: 'grammar', tier: 3, form: 'fill', prompt: '___ you ever eaten sushi?', choices: ['Have', 'Did', 'Do', 'Are'], correctIndex: 0 },
+{ id: 'g318', family: 'grammar', tier: 3, form: 'fill', prompt: "We haven't ___ that movie yet.", choices: ['seen', 'saw', 'see', 'sees'], correctIndex: 0 },
+{ id: 'g319', family: 'grammar', tier: 3, form: 'fill', prompt: 'My brother is ___ than me.', choices: ['taller', 'tall', 'tallest', 'more tall'], correctIndex: 0 },
+{ id: 'g320', family: 'grammar', tier: 3, form: 'fill', prompt: 'This is the ___ food in town.', choices: ['best', 'good', 'better', 'gooder'], correctIndex: 0 },
+{ id: 'g321', family: 'grammar', tier: 3, form: 'fill', prompt: "We don't have ___ milk left.", choices: ['any', 'some', 'many', 'much'], correctIndex: 0 },
+{ id: 'g322', family: 'grammar', tier: 3, form: 'fill', prompt: 'I want ___ water, please.', choices: ['some', 'any', 'many', 'a'], correctIndex: 0 },
+{ id: 'g323', family: 'grammar', tier: 3, form: 'fill', prompt: 'How ___ does this bag cost?', choices: ['much', 'many', 'more', 'most'], correctIndex: 0 },
+{ id: 'g324', family: 'grammar', tier: 3, form: 'fill', prompt: "There aren't ___ cars on the road today.", choices: ['many', 'much', 'some', 'a'], correctIndex: 0 },
+{ id: 'g325', family: 'grammar', tier: 3, form: 'fill', prompt: 'Yesterday I ___ my homework before dinner.', choices: ['finished', 'finish', 'finishes', 'finishing'], correctIndex: 0 },
+{ id: 'g326', family: 'grammar', tier: 3, form: 'fill', prompt: 'Look! It ___ outside right now.', choices: ['is raining', 'rains', 'rained', 'raining'], correctIndex: 0 },
+{ id: 'g327', family: 'grammar', tier: 3, form: 'fill', prompt: 'While I ___ TV, the phone rang.', choices: ['was watching', 'watched', 'watch', 'am watching'], correctIndex: 0 },
+{ id: 'g328', family: 'grammar', tier: 3, form: 'fill', prompt: 'She ___ to Japan twice this year.', choices: ['has been', 'went', 'goes', 'is going'], correctIndex: 0 },
+{ id: 'g329', family: 'grammar', tier: 3, form: 'fill', prompt: 'He is ___ at football than basketball.', choices: ['better', 'good', 'best', 'well'], correctIndex: 0 },
+{ id: 'g330', family: 'grammar', tier: 3, form: 'fill', prompt: 'My grandmother ___ me a story last night.', choices: ['told', 'tell', 'tells', 'telling'], correctIndex: 0 },
+
+/* ---------- tier 4 · ม.ปลาย+ · spot · passive, reported speech, if-clauses, relatives, gerund/inf, article ---------- */
+{ id: 'g401', family: 'grammar', tier: 4, form: 'spot', prompt: 'The window was broke by the boys.', choices: ['broke', 'window', 'boys', 'was'], correctIndex: 0 },
+{ id: 'g402', family: 'grammar', tier: 4, form: 'spot', prompt: 'English is speak in many countries.', choices: ['speak', 'English', 'countries', 'many'], correctIndex: 0 },
+{ id: 'g403', family: 'grammar', tier: 4, form: 'spot', prompt: 'He said me that he was tired.', choices: ['said', 'tired', 'that', 'he'], correctIndex: 0 },
+{ id: 'g404', family: 'grammar', tier: 4, form: 'spot', prompt: 'He said he will come tomorrow.', choices: ['will', 'said', 'come', 'tomorrow'], correctIndex: 0 },
+{ id: 'g405', family: 'grammar', tier: 4, form: 'spot', prompt: 'If I was you, I would apologize.', choices: ['was', 'you', 'apologize', 'would'], correctIndex: 0 },
+{ id: 'g406', family: 'grammar', tier: 4, form: 'spot', prompt: 'The man which stole my bag was caught.', choices: ['which', 'man', 'stole', 'caught'], correctIndex: 0 },
+{ id: 'g407', family: 'grammar', tier: 4, form: 'spot', prompt: 'This is the book who I borrowed.', choices: ['who', 'book', 'borrowed', 'This'], correctIndex: 0 },
+{ id: 'g408', family: 'grammar', tier: 4, form: 'spot', prompt: 'I look forward to hear from you.', choices: ['hear', 'forward', 'you', 'look'], correctIndex: 0 },
+{ id: 'g409', family: 'grammar', tier: 4, form: 'spot', prompt: 'They decided going home early.', choices: ['going', 'decided', 'home', 'early'], correctIndex: 0 },
+{ id: 'g410', family: 'grammar', tier: 4, form: 'spot', prompt: 'She studies the English every day.', choices: ['the', 'studies', 'English', 'day'], correctIndex: 0 },
+{ id: 'g411', family: 'grammar', tier: 4, form: 'spot', prompt: 'This bridge was build in 1990.', choices: ['build', 'bridge', 'was', '1990'], correctIndex: 0 },
+{ id: 'g412', family: 'grammar', tier: 4, form: 'spot', prompt: 'I have visited Thailand since five years.', choices: ['since', 'visited', 'Thailand', 'years'], correctIndex: 0 },
+
+/* ---------- tier 4 · ม.ปลาย+ · fill ---------- */
+{ id: 'g413', family: 'grammar', tier: 4, form: 'fill', prompt: 'The email ___ yesterday morning.', choices: ['was sent', 'sent', 'is sending', 'sends'], correctIndex: 0 },
+{ id: 'g414', family: 'grammar', tier: 4, form: 'fill', prompt: 'These shoes ___ in Italy.', choices: ['are made', 'make', 'are making', 'made'], correctIndex: 0 },
+{ id: 'g415', family: 'grammar', tier: 4, form: 'fill', prompt: 'He told me he ___ finished the report.', choices: ['had', 'has', 'have', 'was'], correctIndex: 0 },
+{ id: 'g416', family: 'grammar', tier: 4, form: 'fill', prompt: 'She said she ___ call me later.', choices: ['would', 'will', 'shall', 'can'], correctIndex: 0 },
+{ id: 'g417', family: 'grammar', tier: 4, form: 'fill', prompt: 'If it rains tomorrow, we ___ the trip.', choices: ['will cancel', 'would cancel', 'will cancelled', 'would cancelled'], correctIndex: 0 },
+{ id: 'g418', family: 'grammar', tier: 4, form: 'fill', prompt: 'If I had more time, I ___ learn Japanese.', choices: ['would', 'will', 'had', 'am'], correctIndex: 0 },
+{ id: 'g419', family: 'grammar', tier: 4, form: 'fill', prompt: 'If she ___ harder, she would have passed.', choices: ['had studied', 'studied', 'studies', 'would study'], correctIndex: 0 },
+{ id: 'g420', family: 'grammar', tier: 4, form: 'fill', prompt: 'The engineer ___ designed this bridge is famous.', choices: ['who', 'which', 'whose', 'whom'], correctIndex: 0 },
+{ id: 'g421', family: 'grammar', tier: 4, form: 'fill', prompt: "The app ___ I downloaded doesn't work.", choices: ['that', 'who', 'whose', 'where'], correctIndex: 0 },
+{ id: 'g422', family: 'grammar', tier: 4, form: 'fill', prompt: 'This is the restaurant ___ we met last year.', choices: ['where', 'which', 'who', 'whose'], correctIndex: 0 },
+{ id: 'g423', family: 'grammar', tier: 4, form: 'fill', prompt: 'I enjoy ___ new languages.', choices: ['learning', 'to learn', 'learn', 'learns'], correctIndex: 0 },
+{ id: 'g424', family: 'grammar', tier: 4, form: 'fill', prompt: 'She decided ___ a new phone.', choices: ['to buy', 'buying', 'buy', 'buys'], correctIndex: 0 },
+{ id: 'g425', family: 'grammar', tier: 4, form: 'fill', prompt: "We're looking forward to ___ you.", choices: ['meeting', 'meet', 'met', 'to meet'], correctIndex: 0 },
+{ id: 'g426', family: 'grammar', tier: 4, form: 'fill', prompt: 'He is interested in ___ a startup.', choices: ['founding', 'to found', 'found', 'founded'], correctIndex: 0 },
+{ id: 'g427', family: 'grammar', tier: 4, form: 'fill', prompt: 'The manager wants the report ___ by Friday.', choices: ['submitted', 'submit', 'submitting', 'to submit'], correctIndex: 0 },
+{ id: 'g428', family: 'grammar', tier: 4, form: 'fill', prompt: 'The news ___ better than we expected.', choices: ['was', 'were', 'is being', 'be'], correctIndex: 0 },
+{ id: 'g429', family: 'grammar', tier: 4, form: 'fill', prompt: 'He apologized ___ late.', choices: ['for being', 'to be', 'being', 'be'], correctIndex: 0 },
+{ id: 'g430', family: 'grammar', tier: 4, form: 'fill', prompt: 'She ___ here since 2015.', choices: ['has worked', 'works', 'worked', 'is working'], correctIndex: 0 },
+];
+
+global.EXPRESS_BANK_GRAMMAR = ITEMS;
+if (typeof module !== 'undefined' && module.exports) module.exports = { GRAMMAR: ITEMS };
+})(typeof window !== 'undefined' ? window : globalThis);
