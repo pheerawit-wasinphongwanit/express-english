@@ -57,6 +57,11 @@ All tuned values are mirrored in `docs/story.md` + `docs/scope.md` + `data.js` (
 2. Sentence counting in the self-test uses lookbehind split (a.m. / 2.1% are not sentence
    breaks) — test-only refinement, no content change.
 
+## Hosting
+
+- GitHub Pages เปิดจาก `main` (root) — live: https://pheerawit-wasinphongwanit.github.io/express-english/ (deploy 2026-09-20, user-confirmed)
+- ตรวจ post-deploy: HTTP 200 ทั้ง index + 6 ไฟล์ js · title ถูกต้อง
+
 ## Playtest notes & fixes
 
 - [ ] Pending round 1 (user + kid): full run on mobile, kid plays W1 (ป.1–3), daily
