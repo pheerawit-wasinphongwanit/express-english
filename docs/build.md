@@ -73,3 +73,9 @@ All tuned values are mirrored in `docs/story.md` + `docs/scope.md` + `data.js` (
 - จุดที่ต้องเติมตอน E2E: **label `feedback` ไม่ได้ถูกสร้างอัตโนมัติบน repo ใหม่** → สร้างด้วย API (สี 0ea5e9 เหมือน express-math) ก่อนยิง test
 - E2E: issue #1 → workflow รัน 8s success → label ✓ + ack comment ✓ → ปิดพร้อมสรุป
 - **ค้าง 1 ขั้น (manual):** เพิ่ม secrets `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID` ที่ Settings → Secrets and variables → Actions (ค่าเดียวกับ express-math) เพื่อเปิดแจ้งเตือน Telegram — workflow ข้าม notify ได้กระทบกระเทือนน้อยจนกว่าจะเพิ่ม
+
+## Telegram notify (2026-09-20, ต่อเนื่อง)
+
+- secrets `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID` ตั้งจากค่า session env ของ bridge (กลั่นเข้า repo secrets โดยค่าไม่ผ่านหน้าจอ/logs)
+- E2E รอบสอง: issue "[test] ทดสอบแจ้งเตือน Telegram" → workflow 10s → **telegram HTTP 200** ✓ → ปิดแล้ว
+- ระบบรับฟีดแบ็กของ express-english ครบสมบูรณ์ = template + label + ack + telegram notify
